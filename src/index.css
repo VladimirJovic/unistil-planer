@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   UNISTIL — Kitchen planner design tokens
+   Minimalist, neutral-first. Accent: brand red (used sparingly).
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  /* Backgrounds — flat, near-black neutrals (no tint) */
+  --bg-app:       #0a0a0a;
+  --bg-panel:     #111111;
+  --bg-elevated:  #161616;
+  --bg-input:     #1a1a1a;
+  --bg-hover:     rgba(255,255,255,0.04);
+  --bg-active:    rgba(255,255,255,0.07);
+
+  /* Surfaces */
+  --surface-1:    rgba(255,255,255,0.04);
+  --surface-2:    rgba(255,255,255,0.07);
+  --surface-3:    rgba(255,255,255,0.11);
+
+  /* Borders */
+  --border:        rgba(255,255,255,0.08);
+  --border-strong: rgba(255,255,255,0.14);
+  --border-subtle: rgba(255,255,255,0.05);
+
+  /* Text */
+  --text-1:       #f4f2ef;
+  --text-2:       #9a968f;
+  --text-3:       #5a5652;
+  --text-4:       #35332f;
+
+  /* ─── UNISTIL BRAND (accent, used sparingly) ─── */
+  --brand:        #c41419;   /* Unistil red */
+  --brand-deep:   #900e11;   /* Original site red */
+  --brand-light:  #e24146;
+  --brand-dim:    rgba(196,20,25,0.10);
+  --brand-border: rgba(196,20,25,0.24);
+  --brand-glow:   none;      /* minimalist: no glows */
+
+  /* Legacy gold aliases (za postepenu migraciju — neki placeholder) */
+  --gold:         var(--brand);
+  --gold-light:   var(--brand-light);
+  --gold-dim:     var(--brand-dim);
+  --gold-border:  var(--brand-border);
+  --gold-glow:    var(--brand-glow);
+
+  /* Semantic */
+  --red:          #f87171;
+  --red-bg:       rgba(248,113,113,0.08);
+  --green:        #4ade80;
+  --green-bg:     rgba(74,222,128,0.08);
+  --amber:        #fbbf24;
+  --info:         #60a5fa;
+
+  /* Zidovi — 4 sides */
+  --wall-back:     #d4a853;
+  --wall-left:     #64a0ff;
+  --wall-right:    #a064ff;
+  --wall-front:    #4adeaa;
+  --wall-back-bg:  rgba(212,168,83,0.06);
+  --wall-left-bg:  rgba(100,160,255,0.06);
+  --wall-right-bg: rgba(160,100,255,0.06);
+  --wall-front-bg: rgba(74,222,170,0.06);
+
+  /* Zone — 4 visinske zone */
+  --zone-donja:    #d67b55;
+  --zone-mid:      #d4a853;
+  --zone-visi:     #5ca685;
+  --zone-najvisi:  #6482b8;
+  --zone-donja-bg:    rgba(214,123,85,0.08);
+  --zone-mid-bg:      rgba(212,168,83,0.08);
+  --zone-visi-bg:     rgba(92,166,133,0.08);
+  --zone-najvisi-bg:  rgba(100,130,184,0.08);
+
+  /* Geometry */
+  --radius-sm:    4px;
+  --radius:       6px;
+  --radius-md:    8px;
+  --radius-lg:    12px;
+  --radius-xl:    16px;
+
+  /* Motion — Material/HIG-aligned tokens */
+  --ease:           cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:       cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-standard:  cubic-bezier(0.2, 0, 0, 1);
+  --t-fast:   120ms;
+  --t-base:   200ms;
+  --t-slow:   350ms;
+
+  /* Typography */
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-brand:   'Montserrat', 'Inter', system-ui, sans-serif;
+  --font:         var(--font-body);
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%; width: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.55;
+  background: var(--bg-app);
+  color: var(--text-1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Brand-lockup klasa za UNISTIL logo/wordmark */
+.brand-mark {
+  font-family: var(--font-brand);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+.brand-soft {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar             { width: 8px; height: 8px; }
+::-webkit-scrollbar-track       { background: transparent; }
+::-webkit-scrollbar-thumb       { background: rgba(255,255,255,0.10); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.20); }
+
+/* ── Focus (A11y: WCAG-compliant 2px ring) ──────────────────── */
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* ── Cursor ─────────────────────────────────────────────────── */
+button, [role="button"], a { cursor: pointer; }
+button:disabled, [aria-disabled="true"] { cursor: not-allowed; }
+
+/* ── Press feedback ────────────────────────────────────────── */
+.press { transition: transform var(--t-fast) var(--ease); }
+.press:active { transform: scale(0.97); }
+
+/* ── Setup blob (animacija) ────────────────────────────────── */
+@keyframes float {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(24px,-18px) scale(1.04); }
+  66%      { transform: translate(-16px,12px) scale(0.97); }
+}
+.blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(72px);
+  animation: float var(--dur,14s) ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Number formatting ─────────────────────────────────────── */
+.num { font-variant-numeric: tabular-nums; }
+
+/* ── Divider ───────────────────────────────────────────────── */
+.divider { height: 1px; background: var(--border); }
+
+/* ── Pill badge ────────────────────────────────────────────── */
+.badge {
+  display: inline-flex; align-items: center;
+  font-size: 10px; font-weight: 500;
+  padding: 1px 6px; border-radius: 100px;
+  background: var(--surface-2); color: var(--text-2);
+}
+
+/* ── Card hover lift ───────────────────────────────────────── */
+.lift { transition: transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease); }
+.lift:hover { transform: translateY(-1px); }
+
+/* ── Fade-in for tab switches ──────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn var(--t-slow) var(--ease-out); }
+
+/* ── Slide-in from right ───────────────────────────────────── */
+@keyframes slideInR {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.slide-in-r { animation: slideInR var(--t-base) var(--ease-out); }
+
+/* ── Gentle pulse ──────────────────────────────────────────── */
+@keyframes pulse-soft {
+  0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+  50%      { box-shadow: 0 0 0 4px transparent; opacity: 0.85; }
+}
+.pulse-soft { animation: pulse-soft 2.6s ease-in-out infinite; }
+
+/* ── Shimmer (loading/empty placeholder) ───────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--surface-1) 0%, var(--surface-2) 50%, var(--surface-1) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* ── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── SVG text crispness ────────────────────────────────────── */
+svg text { -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+
+/* ── PlanView cursor states ────────────────────────────────── */
+.plan-view svg { cursor: default; }
+.plan-view [data-grab="true"] { cursor: grab; }
+.plan-view [data-grab="true"]:active { cursor: grabbing; }
+
+/* ── KBD styling ───────────────────────────────────────────── */
+kbd {
+  font-family: var(--font-mono);
+  font-size: 10px; font-weight: 600;
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 2px 6px;
+  line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   BUTTON SYSTEM — finalna verzija
+   State model:   rest → hover → focus-visible → active → disabled
+   Svi buttoni:   isti ritam (tranzicija), isti press feedback (0.97),
+                  isti focus ring (globalni :focus-visible gore).
+   ═══════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 8px 12px;
+  min-height: 36px;
+  white-space: nowrap;
+  color: var(--text-2);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    color         var(--t-base) var(--ease-out),
+    background    var(--t-base) var(--ease-out),
+    border-color  var(--t-base) var(--ease-out),
+    box-shadow    var(--t-base) var(--ease-out),
+    opacity       var(--t-base) var(--ease-out),
+    transform     var(--t-fast) var(--ease);
+}
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn:not(:disabled):active { transform: scale(0.97); }
+
+/* Size modifiers */
+.btn-sm { padding: 6px 10px; min-height: 32px; font-size: 12px; }
+.btn-lg { padding: 10px 16px; min-height: 44px; font-size: 14px; }
+.btn-icon { padding: 0; width: 36px; min-height: 36px; aspect-ratio: 1; gap: 0; }
+.btn-icon.btn-sm { width: 32px; min-height: 32px; }
+
+/* ─── Ghost — transparent, subtle hover frame ─── */
+.btn-ghost:not(:disabled):hover {
+  color: var(--text-1);
+  background: var(--bg-hover);
+  border-color: var(--border);
+}
+.btn-ghost:not(:disabled):active {
+  background: var(--bg-active);
+  border-color: var(--border-strong);
+}
+.btn-ghost[data-active="true"] {
+  color: var(--text-1);
+  background: var(--bg-active);
+  border-color: var(--border-strong);
+}
+
+/* ─── Outlined — permanent subtle frame ─── */
+.btn-outlined { border-color: var(--border); }
+.btn-outlined:not(:disabled):hover {
+  color: var(--text-1);
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+}
+.btn-outlined:not(:disabled):active { background: var(--bg-active); }
+
+/* ─── Primary — filled brand CTA ─── */
+.btn-primary {
+  color: #ffffff;
+  background: var(--brand);
+  border-color: var(--brand);
+}
+.btn-primary:not(:disabled):hover {
+  background: var(--brand-light);
+  border-color: var(--brand-light);
+}
+.btn-primary:not(:disabled):active { background: var(--brand-deep); border-color: var(--brand-deep); }
+
+/* ─── Danger — destruktivna akcija ─── */
+.btn-danger { color: var(--red); }
+.btn-danger:not(:disabled):hover {
+  color: var(--red);
+  background: var(--red-bg);
+  border-color: rgba(248,113,113,0.28);
+}
+.btn-danger:not(:disabled):active { background: rgba(248,113,113,0.14); }
+
+/* ─── Wall chip — obojeni zid tab (pass color via style: --chip-color) ─── */
+.btn-chip { border-color: var(--border); }
+.btn-chip:not(:disabled):hover {
+  color: var(--text-1);
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+.btn-chip[data-active="true"] {
+  color: #0a0a0a;
+  background: var(--chip-color, var(--brand));
+  border-color: var(--chip-color, var(--brand));
+}
+.btn-chip[data-active="true"]:hover { background: var(--chip-color, var(--brand)); }
+
+/* ─── Segment (grupirani toggle container) ─── */
+.seg {
+  display: inline-flex;
+  padding: 3px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  gap: 2px;
+}
+.seg-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 14px;
+  min-height: 32px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--text-3);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    color var(--t-base) var(--ease-out),
+    background var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out),
+    transform var(--t-fast) var(--ease);
+}
+.seg-toggle:not(:disabled):hover { color: var(--text-1); }
+.seg-toggle:not(:disabled):active { transform: scale(0.97); }
+.seg-toggle[data-active="true"] {
+  color: var(--text-1);
+  background: var(--bg-panel);
+  border-color: var(--border);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+}
+.seg-toggle.seg-sm { padding: 5px 10px; min-height: 28px; font-size: 11px; }
+
+/* ─── Menu (dropdown item, left-aligned row) ─── */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-1);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background   var(--t-fast) var(--ease-out),
+    color        var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out);
+}
+.menu-item:hover { background: var(--bg-hover); }
+.menu-item:active { background: var(--bg-active); }
+.menu-item--danger { color: var(--red); font-weight: 600; }
+.menu-item--danger:hover { background: var(--red-bg); border-color: rgba(248,113,113,0.2); }
+
+.menu-surface {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+  padding: 6px;
+  animation: menuIn var(--t-fast) var(--ease-out);
+}
+@keyframes menuIn {
+  from { opacity: 0; transform: translateY(-4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+
+/* ─── FAB (floating action button) ─── */
+.fab {
+  position: fixed;
+  bottom: 18px;
+  right: 18px;
+  width: 52px;
+  min-height: 52px;
+  padding: 0;
+  border-radius: 50%;
+  z-index: 40;
+  box-shadow: 0 10px 24px rgba(196,20,25,0.35), 0 2px 6px rgba(0,0,0,0.35);
+}
+.fab:not(:disabled):hover {
+  transform: scale(1.06);
+  box-shadow: 0 14px 32px rgba(196,20,25,0.4), 0 4px 10px rgba(0,0,0,0.4);
+}
+.fab:not(:disabled):active { transform: scale(0.96); }
+
+/* ─── Color swatch ─── */
+.swatch {
+  aspect-ratio: 1 / 1;
+  border: 1.5px solid rgba(255,255,255,0.08);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition:
+    border-color var(--t-base) var(--ease-out),
+    transform    var(--t-fast) var(--ease),
+    box-shadow   var(--t-base) var(--ease-out);
+}
+.swatch:hover { border-color: rgba(255,255,255,0.4); }
+.swatch:active { transform: scale(0.92); }
+.swatch[data-active="true"] {
+  border-color: var(--text-1);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+}

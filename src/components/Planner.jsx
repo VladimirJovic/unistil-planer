@@ -8,14 +8,15 @@ import CartSummary from './CartSummary'
 import Tooltip from './Tooltip'
 
 // Jedinstveni Pogled picker — bira i kameru i aktivan zid u istom kliku.
-// 3D opcija je "slobodan pogled" — ne menja activeWall.
+// Terminologija iz arhitekture: "perspektiva" (3D), "izgled" (pogled ka zidu).
+// 3D opcija je slobodan pogled — ne menja activeWall.
 // Wall opcije (Zadnji/Desni/Prednji/Levi) = camera preset + activeWall istovremeno.
 const VIEW_OPTIONS = [
-  { id: 'perspective', label: '3D',      wall: null,    tip: 'Slobodan 3D pogled' },
-  { id: 'back',        label: 'Zadnji',  wall: 'back',  tip: 'Pogled ka zadnjem zidu' },
-  { id: 'right',       label: 'Desni',   wall: 'right', tip: 'Pogled ka desnom zidu' },
-  { id: 'front',       label: 'Prednji', wall: 'front', tip: 'Pogled ka prednjem zidu' },
-  { id: 'left',        label: 'Levi',    wall: 'left',  tip: 'Pogled ka levom zidu' },
+  { id: 'perspective', label: '3D',      wall: null,    tip: 'Perspektiva — slobodan 3D pogled' },
+  { id: 'back',        label: 'Zadnji',  wall: 'back',  tip: 'Izgled zadnjeg zida' },
+  { id: 'right',       label: 'Desni',   wall: 'right', tip: 'Izgled desnog zida' },
+  { id: 'front',       label: 'Prednji', wall: 'front', tip: 'Izgled prednjeg zida' },
+  { id: 'left',        label: 'Levi',    wall: 'left',  tip: 'Izgled levog zida' },
 ]
 
 // ─────────────────────────────────────────────────────────────
@@ -478,7 +479,7 @@ const ONBOARD_STEPS = [
     icon: Layers,
     eyebrow: 'Korak 1 — Katalog',
     title: 'Izaberite elemente sa leve strane',
-    body: 'U levom panelu birate kategoriju (Donji, Viseći, Radna ploča, Ugaoni...) pa kliknete ili prevučete element u kuhinju. Postavlja se na aktivan zid.',
+    body: 'U levom panelu birate kategoriju (Donji, Viseći, Visoki, Radna ploča, Ugaoni...) pa kliknete ili prevučete element u kuhinju. Postavlja se na aktivan zid.',
     tip: 'Pretraga na vrhu kataloga — brzo pronađite tačno ono što tražite.',
   },
   {

@@ -63,14 +63,15 @@ export function zonesYStart(zoneIds) {
 }
 
 // Kategorije — grupisanje u paleti
+// Terminologija usklađena sa Forma Ideale / IKEA Srbija / Emmezeta standardom.
 export const CATEGORIES = {
-  DONJI:    { id: 'DONJI',    label: 'Donji (stojeći)',   zone: 'donja'   },
-  RADNA:    { id: 'RADNA',    label: 'Radna površ',       zone: 'mid'     },
-  VISECI:   { id: 'VISECI',   label: 'Viseći',            zone: 'visi'    },
-  VISOKI:   { id: 'VISOKI',   label: 'Kolone (visoki)',   zone: 'donja'   },  // spans donja+mid+visi
-  UGAONI:   { id: 'UGAONI',   label: 'Ugaoni',            zone: 'donja'   },
-  UGRADNI:  { id: 'UGRADNI',  label: 'Ugradni uređaji',   zone: 'mid'     },
-  APARATI:  { id: 'APARATI',  label: 'Samostojeći',       zone: 'donja'   },
+  DONJI:    { id: 'DONJI',    label: 'Donji elementi',      zone: 'donja'   },
+  RADNA:    { id: 'RADNA',    label: 'Radna ploča',         zone: 'mid'     },
+  VISECI:   { id: 'VISECI',   label: 'Viseći elementi',     zone: 'visi'    },
+  VISOKI:   { id: 'VISOKI',   label: 'Visoki elementi',     zone: 'donja'   },  // spans donja+mid+visi
+  UGAONI:   { id: 'UGAONI',   label: 'Ugaoni elementi',     zone: 'donja'   },
+  UGRADNI:  { id: 'UGRADNI',  label: 'Ugradni uređaji',     zone: 'mid'     },
+  APARATI:  { id: 'APARATI',  label: 'Samostojeći uređaji', zone: 'donja'   },
 }
 
 // Boja → hex mapa
@@ -94,7 +95,7 @@ const mk = (base, overrides) => ({ ...base, ...overrides })
 // ═══════════════════════════════════════════════════════════════
 export const elements = [
 
-  // ─── DONJI (STOJEĆI) — zone: donja ──────────────────────────
+  // ─── DONJI ELEMENTI — zone: donja ───────────────────────────
   {
     id: 1001, wcId: 1001, name: 'Donji 60', category: 'DONJI',
     color: COLORS.bela.hex, colorName: 'Bela',
@@ -242,26 +243,26 @@ export const elements = [
     description: 'Duboki viseći 96cm, ulazi u gornju zonu',
   },
 
-  // ─── VISOKI (KOLONE) — zone: donja+mid+visi ─────────────────
-  { id: 3001, wcId: 3001, name: 'Kolona ostava 60', category: 'VISOKI',
+  // ─── VISOKI ELEMENTI (kolone) — zone: donja+mid+visi ────────
+  { id: 3001, wcId: 3001, name: 'Visoki ostava 60', category: 'VISOKI',
     color: COLORS.bela.hex, colorName: 'Bela',
     dimensions: { width: 60, height: 216, depth: 60 },
     price: 38990, placement: 'tall', zones: ['donja', 'mid', 'visi'],
     description: 'Od poda do plafona, 6 polica',
   },
-  { id: 3002, wcId: 3002, name: 'Kolona rerna 60', category: 'VISOKI',
+  { id: 3002, wcId: 3002, name: 'Visoki za rernu 60', category: 'VISOKI',
     color: COLORS.bela.hex, colorName: 'Bela',
     dimensions: { width: 60, height: 216, depth: 60 },
     price: 42990, placement: 'tall', zones: ['donja', 'mid', 'visi'],
     description: 'Prostor za ugradnu rernu u sredini',
   },
-  { id: 3003, wcId: 3003, name: 'Kolona za frižider 60', category: 'VISOKI',
+  { id: 3003, wcId: 3003, name: 'Visoki za frižider 60', category: 'VISOKI',
     color: COLORS.bela.hex, colorName: 'Bela',
     dimensions: { width: 60, height: 216, depth: 60 },
     price: 29990, placement: 'tall', zones: ['donja', 'mid', 'visi'],
     description: 'Niša za ugradni frižider',
   },
-  { id: 3004, wcId: 3004, name: 'Kolona full 60', category: 'VISOKI',
+  { id: 3004, wcId: 3004, name: 'Visoki puni 60', category: 'VISOKI',
     color: COLORS.antracit.hex, colorName: 'Antracit',
     dimensions: { width: 60, height: 240, depth: 60 },
     price: 46990, placement: 'tall', zones: ['donja', 'mid', 'visi', 'najvisi'],

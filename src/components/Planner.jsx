@@ -579,6 +579,11 @@ function OnboardingCard() {
         style={{
           width: '100%',
           maxWidth: 540,
+          // Fiksna minimalna visina — sadržaj varira između koraka (savet/bez),
+          // pa rezervišemo prostor za najveći korak i centriramo vertikalno.
+          minHeight: 560,
+          display: 'flex',
+          flexDirection: 'column',
           background: 'rgba(18,18,22,0.98)',
           border: '1px solid var(--border-strong)',
           borderRadius: 18,
@@ -589,7 +594,7 @@ function OnboardingCard() {
         }}
       >
         {/* ── Header — progress dots + skip ──────────────────── */}
-        <div className="flex items-center justify-between" style={{ padding: '16px 20px 4px' }}>
+        <div className="flex items-center justify-between" style={{ padding: '16px 20px 4px', flexShrink: 0 }}>
           <div className="flex items-center gap-1.5" role="tablist" aria-label="Koraci">
             {ONBOARD_STEPS.map((_, i) => {
               const active = i === stepIdx
@@ -632,7 +637,9 @@ function OnboardingCard() {
           key={stepIdx}
           className="flex flex-col items-center text-center"
           style={{
-            padding: '18px 36px 8px',
+            flex: 1,
+            justifyContent: 'center',  // centriraj vertikalno — whitespace ide iznad+ispod ravnomerno
+            padding: '18px 36px 18px',
             animation: 'fadeIn var(--t-slow) var(--ease-out)',
           }}
         >
@@ -720,7 +727,7 @@ function OnboardingCard() {
           className="flex items-center justify-between"
           style={{
             padding: '18px 20px 20px',
-            marginTop: 14,
+            flexShrink: 0,
             borderTop: '1px solid var(--border)',
             background: 'rgba(0,0,0,0.15)',
           }}

@@ -6,6 +6,7 @@ import Scene3D from './Scene3D'
 import PlanView from './PlanView'
 import CartSummary from './CartSummary'
 import Tooltip from './Tooltip'
+import BrandLogo from './BrandLogo'
 
 // Jedinstveni Pogled picker — bira i kameru i aktivan zid u istom kliku.
 // Terminologija iz arhitekture: "perspektiva" (3D), "izgled" (pogled ka zidu).
@@ -340,11 +341,7 @@ function Toolbar() {
 
         <div style={{ width: 1, height: 26, background: 'var(--border)' }} />
 
-        <div className="flex items-center">
-          <span className="brand-mark" style={{ fontSize: 14, color: 'var(--text-1)' }}>
-            UNISTIL
-          </span>
-        </div>
+        <BrandLogo size={28} wordSize={14} />
 
         <div style={{ width: 1, height: 26, background: 'var(--border)' }} />
 
@@ -644,21 +641,39 @@ function OnboardingCard() {
             animation: 'fadeIn var(--t-slow) var(--ease-out)',
           }}
         >
-          {/* Ikona */}
-          <div
-            className="flex items-center justify-center"
-            style={{
-              width: 68, height: 68,
-              marginBottom: 18,
-              borderRadius: 20,
-              background: 'linear-gradient(135deg, rgba(196,20,25,0.18), rgba(196,20,25,0.04))',
-              border: '1px solid var(--brand-border)',
-              color: 'var(--brand-light)',
-              boxShadow: '0 8px 24px rgba(196,20,25,0.15), inset 0 1px 0 rgba(255,255,255,0.06)',
-            }}
-          >
-            <Icon size={30} strokeWidth={1.75} />
-          </div>
+          {/* Ikona — na prvom koraku (Dobrodošli) prikazujemo brand logo */}
+          {stepIdx === 0 ? (
+            <img
+              src={new URL('../assets/unistil-logo.png', import.meta.url).href}
+              alt="Unistil"
+              width={72}
+              height={72}
+              draggable={false}
+              style={{
+                width: 72, height: 72,
+                marginBottom: 18,
+                borderRadius: '50%',
+                boxShadow: '0 0 0 1px var(--border-strong), 0 10px 28px rgba(0,0,0,0.45)',
+                display: 'block',
+                animation: 'menuIn var(--t-slow) var(--ease-out)',
+              }}
+            />
+          ) : (
+            <div
+              className="flex items-center justify-center"
+              style={{
+                width: 68, height: 68,
+                marginBottom: 18,
+                borderRadius: 20,
+                background: 'linear-gradient(135deg, rgba(196,20,25,0.18), rgba(196,20,25,0.04))',
+                border: '1px solid var(--brand-border)',
+                color: 'var(--brand-light)',
+                boxShadow: '0 8px 24px rgba(196,20,25,0.15), inset 0 1px 0 rgba(255,255,255,0.06)',
+              }}
+            >
+              <Icon size={30} strokeWidth={1.75} />
+            </div>
+          )}
 
           {/* Eyebrow */}
           <p

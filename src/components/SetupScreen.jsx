@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { ArrowRight, ArrowLeft, ChevronUp, ChevronDown } from 'lucide-react'
 import { useStore } from '../store/useStore'
+import BrandLogo from './BrandLogo'
 
 // ─────────────────────────────────────────────────────────────
 // PRESETI
@@ -217,7 +218,7 @@ export default function SetupScreen() {
             Projekti
           </button>
           <span style={{ width: 1, height: 16, background: 'var(--border)' }} />
-          <span className="brand-mark" style={{ fontSize: 13, color: 'var(--text-1)' }}>UNISTIL</span>
+          <BrandLogo size={26} wordSize={13} />
         </div>
 
         <span style={{ fontSize: 11, color: 'var(--text-3)' }}>

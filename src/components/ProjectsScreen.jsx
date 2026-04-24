@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Plus, FolderOpen, Trash2, LogOut, Pencil, Check, X, ArrowRight, Clock } from 'lucide-react'
 import { useStore } from '../store/useStore'
+import BrandLogo from './BrandLogo'
 
 // ─────────────────────────────────────────────────────────────
 // Datum (sr-RS)
@@ -67,7 +68,7 @@ export default function ProjectsScreen() {
       {/* Header — minimalan, 1px border */}
       <header className="flex items-center justify-between"
               style={{ padding: '16px 32px', borderBottom: '1px solid var(--border)' }}>
-        <span className="brand-mark" style={{ fontSize: 13, color: 'var(--text-1)' }}>UNISTIL</span>
+        <BrandLogo size={26} wordSize={13} />
 
         <div className="flex items-center gap-4">
           <span style={{ fontSize: 12, color: 'var(--text-3)' }}>

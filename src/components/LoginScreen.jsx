@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { useStore } from '../store/useStore'
+import BrandLogo from './BrandLogo'
 
 // ─────────────────────────────────────────────────────────────
 // LOGIN — minimal, neutral. Email + ime obavezno; telefon/firma opcionalno.
@@ -36,14 +37,30 @@ export default function LoginScreen() {
 
       <div className="w-full px-6" style={{ maxWidth: 380 }}>
 
-        {/* Brand wordmark */}
-        <div className="flex flex-col items-center mb-10">
-          <span className="brand-mark" style={{ fontSize: 14, color: 'var(--text-1)' }}>
-            UNISTIL
-          </span>
-          <span style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 6, letterSpacing: '0.02em' }}>
-            Planer kuhinja
-          </span>
+        {/* Brand lockup — veci mark za landing stranicu */}
+        <div className="flex flex-col items-center mb-10" style={{ gap: 12 }}>
+          <img
+            src={new URL('../assets/unistil-logo.png', import.meta.url).href}
+            alt="Unistil"
+            width={68}
+            height={68}
+            draggable={false}
+            style={{
+              width: 68, height: 68,
+              display: 'block',
+              borderRadius: '50%',
+              boxShadow: '0 0 0 1px var(--border), 0 8px 24px rgba(0,0,0,0.35)',
+              userSelect: 'none',
+            }}
+          />
+          <div className="flex flex-col items-center" style={{ gap: 4 }}>
+            <span className="brand-mark" style={{ fontSize: 16, color: 'var(--text-1)', letterSpacing: '0.06em', fontWeight: 700 }}>
+              UNISTIL
+            </span>
+            <span style={{ fontSize: 11, color: 'var(--text-3)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+              Planer kuhinja
+            </span>
+          </div>
         </div>
 
         {/* Form card */}
